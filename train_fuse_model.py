@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("clean_fuse_data.csv")
 
@@ -25,3 +26,10 @@ mae = mean_absolute_error(y_test, predictions)
 mape = mean_absolute_percentage_error(y_test, predictions)
 print("MAE:", mae)
 print("MAPE:", mape)
+
+plt.scatter(y_test, predictions)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color = "red", linestyle = "--")
+plt.xlabel("Actual time taken to blow")
+plt.ylabel("Predicted time taken to blow")
+plt.title("Predicted vs Actual time taken for fuse to blow")
+plt.show()
