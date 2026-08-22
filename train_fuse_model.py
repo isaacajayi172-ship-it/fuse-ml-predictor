@@ -6,8 +6,9 @@ from sklearn.metrics import mean_absolute_percentage_error
 import matplotlib.pyplot as plt
 
 data = pd.read_csv("clean_fuse_data.csv")
+data["current_squared"] = data["current"] ** 2
 
-X = data[["k", "current"]]
+X = data[["k", "current", "current_squared"]]
 y = data["time_taken_to_blow"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
@@ -15,7 +16,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 print(X_train.shape)
 print(X_test.shape)
 
-model = DecisionTreeRegressor(random_state=42)
+model = DecisionTreeRegressor(random_state = 42)
 model.fit(X_train, y_train)
 
 predictions = model.predict(X_test)
