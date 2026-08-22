@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
 import matplotlib.pyplot as plt
+import joblib
 
 data = pd.read_csv("clean_fuse_data.csv")
 data["current_squared"] = data["current"] ** 2
@@ -18,6 +19,8 @@ print(X_test.shape)
 
 model = DecisionTreeRegressor(random_state = 42)
 model.fit(X_train, y_train)
+
+joblib.dump(model, "fuse_model.pk1")
 
 predictions = model.predict(X_test)
 print(predictions[:5])
