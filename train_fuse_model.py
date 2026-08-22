@@ -36,4 +36,5 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color = "re
 plt.xlabel("Actual time taken to blow")
 plt.ylabel("Predicted time taken to blow")
 plt.title("Predicted vs Actual time taken for fuse to blow")
+plt.savefig("prediction_chart.png")
 plt.show()
